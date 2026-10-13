@@ -5,19 +5,24 @@ using UnityEngine;
 /// </summary>
 public class BuildInfo : MonoBehaviour
 {
-[SerializeField] private string buildLabel = "StoryQuest v0.1";
+[SerializeField] private string buildLabel = "StoryQuest v0.1-FrezzyAlvaWijaksana";
 [SerializeField] private float rotationSpeed = 45f;
 [SerializeField] private Transform targetCube;
 private string _info;
+
 private void Start()
 {
-_info = $"{buildLabel}\n" +
-$"Device : {SystemInfo.deviceModel}\n" +
-$"OS : {SystemInfo.operatingSystem}\n" +
-$"Layar : {Screen.width}x{Screen.height}";
-// Baris ini akan terbaca melalui adb logcat pada Langkah 7.
-Debug.Log($"[BuildInfo] {_info.Replace("\n", " | ")}");
+      Application.targetFrameRate = 30;
+    _info = $"{buildLabel}\n" +
+            $"Device : {SystemInfo.deviceModel}\n" +
+            $"OS : {SystemInfo.operatingSystem}\n" +
+            $"Layar : {Screen.width}x{Screen.height}\n" +
+            $"RAM : {SystemInfo.systemMemorySize} MB\n" +
+            $"GPU : {SystemInfo.graphicsDeviceName}";
+
+    Debug.Log($"[BuildInfo] {_info.Replace("\n", " | ")}");
 }
+
 private void Update()
 {
 if (targetCube == null) return;
