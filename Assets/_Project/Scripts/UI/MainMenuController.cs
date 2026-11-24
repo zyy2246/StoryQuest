@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class MainMenuController : MonoBehaviour
+
+public class MainMenuController : MonoBehaviour, IBackHandler
 {
+
 [Header("Tombol")]
 [SerializeField] private Button btnStart;
 [SerializeField] private Button btnContinue;
@@ -51,8 +53,6 @@ aboutPanel.SetActive(false);
 }
 private void RefreshPoints()
 {
-
-
 txtPoints.text = $"Poin: {GameManager.Instance.TotalPoints}";
 }
 
@@ -71,7 +71,7 @@ private void Update()
 private void HandleStart()
 {
 Debug.Log("[Menu] Tombol Mulai ditekan.");
-NavigationManager.Instance.GoTo(SceneNames.STORY_LIST);
+NavigationManager.Instance.Push(SceneNames.STORY_LIST);
 }
 private void HandleContinue()
 {
@@ -87,5 +87,15 @@ private void CloseAbout()
 {
 aboutPanel.SetActive(false);
 Debug.Log("[Menu] Panel Tentang ditutup.");
+}
+public bool OnBackPressed()
+{
+if (aboutPanel != null && aboutPanel.activeSelf)
+{
+aboutPanel.SetActive(false);
+Debug.Log("[Menu] Tombol kembali menutup panel Tentang.");
+return true; // Ditangani di sini — jangan keluar aplikasi.
+}
+return false; // Serahkan ke NavigationManager.
 }
 }

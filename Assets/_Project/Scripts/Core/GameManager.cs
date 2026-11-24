@@ -47,4 +47,34 @@ totalPoints = 0;
 selectedStoryId = string.Empty;
 Debug.Log("[GameManager] Sesi direset.");
 }
+
+private SessionData _currentSession;
+public SessionData CurrentSession => _currentSession;
+public void BeginSession(string storyId, string storyTitle)
+{
+_currentSession = new SessionData(storyId, storyTitle);
+selectedStoryId = storyId;
+Debug.Log($"[GameManager] Sesi dimulai: {storyTitle}");
+}
+public void RecordObjective(int points)
+{
+if (_currentSession == null)
+{
+Debug.LogWarning("[GameManager] RecordObjective dipanggil tanpa sesi aktif.");
+return;
+}
+_currentSession.pointsEarned += points;
+_currentSession.objectivesCompleted++;
+AddPoints(points);
+}
+public void EndSession()
+{
+if (_currentSession == null) return;
+Debug.Log($"[GameManager] Sesi berakhir. " +
+
+$"{_currentSession.objectivesCompleted} objektif, " +
+$"{_currentSession.pointsEarned} poin, " +
+$"{_currentSession.DurationSeconds} detik.");
+
+}
 }

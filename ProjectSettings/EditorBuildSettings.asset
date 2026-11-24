@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/StoryList.unity
     guid: 65da54de51877074a97133e1547aad06
   - enabled: 1
+    path: Assets/ThirdParty/AR/ARStage.unity
+    guid: 5d7a54508a7f4514981b1e8e2ffd4b70
+  - enabled: 1
     path: Assets/_Project/Scenes/Result.unity
     guid: 6036c3ff2f15fa7498d6f2507ee244b2
   - enabled: 0

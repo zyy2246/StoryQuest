@@ -9,6 +9,6 @@ private IEnumerator Start()
 {
 Debug.Log("[Splash] Menampilkan logo...");
 yield return new WaitForSeconds(displayDuration);
-NavigationManager.Instance.GoTo(SceneNames.MAIN_MENU);
+NavigationManager.Instance.Replace(SceneNames.MAIN_MENU);
 }
 }
